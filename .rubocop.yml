@@ -1,0 +1,442 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: false
+  ExtraDetails: false
+  UseCache: false
+  Exclude:
+    - cutlet.gemspec
+
+
+# Indent private/protected/public as deep as method definitions.
+Layout/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+# Align the key beginning and hash-rockets of multi-line hashes.
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+  EnforcedLastArgumentHashStyle: always_inspect
+
+# Align multi-line method calls to next indented level.
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+# Ban `and` / `or` keywords everywhere.
+Style/AndOr:
+  EnforcedStyle: always
+
+# Enforce %() over %Q().
+Style/BarePercentLiterals:
+  EnforcedStyle: bare_percent
+
+# Enforce braces on single-line blocks and do..end around for multi-line blocks.
+Style/BlockDelimiters:
+  EnforcedStyle: line_count_based
+  ProceduralMethods:
+    # Calls which use method return value instead of block return value.
+    - benchmark
+    - bm
+    - bmbm
+    - create
+    - each_with_object
+    - measure
+    - new
+    - realtime
+    - tap
+    - with_object
+  FunctionalMethods:
+    # Calls with return values which don't appear to be used.
+    - let
+    - let!
+    - subject
+    - watch
+  IgnoredMethods:
+    # Methods which cannot be categorised based on their usage alone.
+    - lambda
+    - proc
+    - it
+
+# Require braces if second-to-last parameter is also a hash literal.
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+# Indent each `when` additional level inside case..end block.
+Layout/CaseIndentation:
+  IndentOneStep: true
+
+# Ban compact (e.g. `class Foo::Bar`) class/module definition style.
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+# Prefer `is_a?` over `kind_of?`.
+Style/ClassCheck:
+  EnforcedStyle: is_a?
+
+# TODO: httpLs://github.com/bbatsov/rubocop/issues/1758
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+# Align with the style guide (but `reduce` is dumb).
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'inject'
+    detect: 'find'
+    find_all: 'select'
+
+# Use `..` for single-line, and %x on multi-line commands.
+Style/CommandLiteral:
+  EnforcedStyle: mixed
+  AllowInnerBackticks: false
+
+# Enforce formatting of special comments.
+Style/CommentAnnotation:
+  Keywords:
+    - FIXME
+    - HACK
+    - NOTE
+    - OPTIMIZE
+    - REVIEW
+    - TODO
+
+# General license is more than sufficient.
+Style/Copyright:
+  Enabled: false
+
+# Don't require top-level class documentation.
+Style/Documentation:
+  Enabled: false
+
+# Multi-line method chaining should be done with leading dots.
+Layout/DotPosition:
+  EnforcedStyle: leading
+
+# An explicit true/false return value is not an unreasonable expectation.
+Style/DoubleNegation:
+  Enabled: false
+
+# Warn on empty else or else statements with nil.
+Style/EmptyElse:
+  EnforcedStyle: both
+
+# Require empty lines only between multi-line method definitions.
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+# No empty lines between block interior.
+Layout/EmptyLinesAroundBlockBody:
+  EnforcedStyle: no_empty_lines
+
+# No empty lines between class interior.
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: no_empty_lines
+
+# No empty lines between module interior.
+Layout/EmptyLinesAroundModuleBody:
+  EnforcedStyle: no_empty_lines
+
+# Require `# coding: utf-8` at beginning of each ruby file.
+Style/Encoding:
+  Enabled: true
+
+# Loosens rules surrounding extra spacing intended for alignment.
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+  Exclude:
+    - app/views/**/*
+
+# Ignore executable ruby script files.
+Naming/FileName:
+  IgnoreExecutableScripts: true
+
+# Indent first parameter for multi-line calls, require
+# parentheses if any other arguments are also method calls.
+Layout/FirstParameterIndentation:
+  EnforcedStyle: special_for_inner_method_call_in_parentheses
+
+# Prefer `each` over `for` loops.
+Style/For:
+  EnforcedStyle: each
+
+# Enforce `% foo` style for string formatting.
+Style/FormatString:
+  EnforcedStyle: format
+
+# Ban global variables except the standard built-ins.
+Style/GlobalVars:
+  Enabled: true
+
+# Prefer guard clauses for single-line `if` / `end` blocks.
+Style/GuardClause:
+  MinBodyLength: 1
+
+# Prefer key-value pairs over hash-rockets and ban mixed styles.
+Style/HashSyntax:
+  EnforcedStyle: ruby19_no_mixed_keys
+  UseHashRocketsWithSymbolValues: false
+
+# Annoying rule.
+Style/IfUnlessModifier:
+  Enabled: false
+
+# All method + modifier keywords should be indented the same.
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
+
+Layout/IndentationWidth:
+  # Number of spaces for each indentation level.
+  Width: 2
+
+# Indent multi-line hash key-value pairs the same, regardless of context.
+Layout/IndentHash:
+  EnforcedStyle: consistent
+
+# Ban `lambda.(x, y)` syntactic sugar.
+Style/LambdaCall:
+  EnforcedStyle: call
+
+# Use `next` to skip iteration instead of conditional at end.
+Style/Next:
+  EnforcedStyle: skip_modifier_ifs
+
+# Allow various forms of `.nil?` checks, as `===` behavior CAN be important.
+Style/NonNilCheck:
+  IncludeSemanticChanges: false
+
+# Always equire parantheses around method argument definitions.
+Style/MethodDefParentheses:
+  EnforcedStyle: require_parentheses
+
+# Use snake_case for method definitions, since it's a nearly universal best
+# practice to only use CamelCase in Ruby for certain constants.
+Naming/MethodName:
+  EnforcedStyle: snake_case
+
+# Enforce right-hand operand alignment of binary operations.
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# Require `_` in between each 3-digit group beyond 4-digits in length.
+Style/NumericLiterals:
+  MinDigits: 5
+
+# Sometimes you need these, and they don't have identical behavior.
+Style/OptionHash:
+  Enabled: false
+
+# Too handy to enable.
+Style/ParallelAssignment:
+  Enabled: false
+
+# Allow safe assignment in conditions.
+Style/ParenthesesAroundCondition:
+  AllowSafeAssignment: true
+
+# `{}` for strings, `[]` for arrays, `()` for everything else.
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  '{}'
+    '%i': '[]'
+    '%I': '[]'
+    '%q': '{}'
+    '%Q': '{}'
+    '%r': '()'
+    '%s': '()'
+    '%w': '[]'
+    '%W': '[]'
+    '%x': '()'
+
+# Use `%Q` only when necessary.
+Style/PercentQLiterals:
+  EnforcedStyle: lower_case_q
+
+# Prefer `.foo?` over `.is_foo?`.
+Naming/PredicateName:
+  NamePrefixBlacklist:
+    - can_
+    - has_
+    - have_
+    - is_
+    - will_
+  NameWhitelist:
+    - is_a?
+
+# Prefer `raise Exception, msg` over `raise Exception.new(msg)`.
+Style/RaiseArgs:
+  EnforcedStyle: exploded
+
+# Prefer `return [x, y]` over `return x, y`.
+Style/RedundantReturn:
+  AllowMultipleReturnValues: false
+
+# Prefer `/../` for regular expressions (and disallow inner slashes in `/../`).
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+  AllowInnerSlashes: false
+
+# Disallow multiple expressions on the same line.
+Style/Semicolon:
+  AllowAsExpressionSeparator: false
+
+# This is garbage, considering there's a lack of prominent Ruby literature that
+# effectively justifies the contrived nature of this semantic preference.
+Style/SignalException:
+  Enabled: false
+
+# Variable names should always be expressive, and not be dictated simply because
+# common method calls more prominently feature short-hand in the Ruby universe.
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# Disallow all single-line methods.
+Style/SingleLineMethods:
+  AllowIfMethodIsEmpty: false
+
+# TODO: Not helpful for aligning similar, sequential method calls.
+Layout/SpaceBeforeFirstArg:
+  Enabled: false
+
+# Require parentheses around short-hand lambda arguments.
+Style/StabbyLambdaParentheses:
+  EnforcedStyle: require_parentheses
+
+# Prefer single-quotes when possible.
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+# Prefer single-quotes when possible.
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
+
+# No space between `|` and parameters in block definition.
+Layout/SpaceAroundBlockParameters:
+  EnforcedStyleInsidePipes: no_space
+
+# Require spaces around `=` sign when defining parameter defaults.
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: space
+
+# This just makes alignment a nightmare for conditional waterfall operations.
+Layout/SpaceAroundOperators:
+  Enabled: false
+
+# Require space between method call and block definition braces.
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyle: space
+
+# Require spaces inside block definition braces
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: space
+  SpaceBeforeBlockParameters: true
+
+# Require spaces inside hash definition braces, except for empty hashes.
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: no_space
+
+# Ban spaces inside string interpolation braces.
+Layout/SpaceInsideStringInterpolation:
+  EnforcedStyle: no_space
+
+# Prefer `.map(&:to_s)` over `.map { |i| i.to_s }`.
+Style/SymbolProc:
+  Enabled: true
+
+# Require final newline at end of each Ruby file.
+Layout/TrailingBlankLines:
+  EnforcedStyle: final_newline
+
+# The precedent of including a trailing comma in lists is only for convenience
+# of reading file diffs and shouldn't dictate the general style of any language.
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: no_comma
+
+# Warn when defining methods which could use built-in `attr_*` declarations.
+Style/TrivialAccessors:
+  AllowDSLWriters: true
+  AllowPredicates: false
+  ExactNameMatch: true
+
+# See Style/MethodName for more information.
+Naming/VariableName:
+  EnforcedStyle: snake_case
+
+# Prefer `%w[]` for array literals of word-like strings.
+Style/WordArray:
+  Enabled: true
+
+##################### Metrics ##################################
+
+# Enforces a reasonable maximum Assignment/Branch/Condition magnitude
+# that will allow for organic development and timely warnings.
+Metrics/AbcSize:
+  Max: 16
+
+# Warn when block nesting exceeds 3 levels.
+Metrics/BlockNesting:
+  Max: 3
+
+# These values are rather contrived and have been reasonably adjusted to
+# reflect the broader application of length metrics in the real world.
+Metrics/ClassLength:
+  CountComments: false
+  Max: 120
+
+# See Metrics/ClassLength for more information.
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 120
+
+# Enforce a maximum CyclomaticComplexity magnitude.
+Metrics/CyclomaticComplexity:
+  Max: 7
+
+# The archaic practice of 80-character line lengths is hilariously insufficient.
+Metrics/LineLength:
+  Max: 100
+  AllowURI: true
+  Exclude:
+    - features/**/*.rb
+
+# See Metrics/ClassLength for more information.
+Metrics/MethodLength:
+  CountComments: false
+  Max: 15
+  Exclude:
+    - features/**/*.rb
+
+# Use keyword arguments if parameter list length exceeds 5 declarations.
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+  Max: 5
+
+# Sets maximum score for the ease of reading a method.
+Metrics/PerceivedComplexity:
+  Max: 7
+
+##################### Lint ##################################
+
+# Allow safe assignment in conditions.
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: true
+
+# Align `end` with `keyword`.
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: keyword
+
+# Align with current level of modifier keyword indentation.
+Layout/DefEndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+
+# Checks for unused block arguments.
+Lint/UnusedBlockArgument:
+  IgnoreEmptyBlocks: true
+
+# Checks for unused method arguments.
+Lint/UnusedMethodArgument:
+  AllowUnusedKeywordArguments: false
+  IgnoreEmptyMethods: true
+
+
