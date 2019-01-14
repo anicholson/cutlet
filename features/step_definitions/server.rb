@@ -40,8 +40,10 @@ Then('a response is generated') do
   expect(@harness.response).not_to be_nil
 end
 
-Then('the lambda context is provided to the app') do
+Then('the lambda context was provided to the app') do
+  expect(@harness.context_passed).to eq(@harness.context)
 end
 
 Then('the lambda event is provided to the app') do
+  expect(@harness.event_passed).to eq(@harness.event)
 end

@@ -4,15 +4,22 @@ require 'pry'
 require 'json'
 require 'cutlet'
 
-Harness = Struct.new(:app, :event, :context, :handler, :response)
+Harness = Struct.new(:app, :event, :context, :handler, :response, :context_passed, :event_passed)
+
+ContextReporter = -> (context) { $harness.context_passed = context }
+EventReporter = -> (event) { $harness.event_passed = event }
 
 def simple_rack_app
   proc do |env|
-    event = env['lambda.context'] || {}
+    context = env['lambda.context'] || {}
+    event  = env['lambda.event'] || ''
 
-    event_name = event.function_name
+    event_name = context.function_name
 
-    [200, [], { event_name: event[:function_name] }.to_json]
+    ContextReporter.(context)
+    EventReporter.(event)
+
+    [200, [], { event_name: context[:function_name] }.to_json]
   end
 end
 
