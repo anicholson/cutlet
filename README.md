@@ -1,8 +1,10 @@
 # Cutlet
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cutlet`. To experiment with that code, run `bin/console` for an interactive prompt.
+In November 2018, Amazon Web Services announced their serverless platform, Lambda, [would support Ruby as a runtime][announcement].
 
-TODO: Delete this and the text above, and describe your gem
+Ruby has a long tradition of being useful for microservices, with a bunch of excellent Web frameworks built on top of the [Rack servlet specification][rack]. Wouldn't it be great if developers could drop their existing Rack apps into a Lambda environment with minimal fuss and next-to-no config?
+
+Enter Cutlet!
 
 ## Installation
 
@@ -16,13 +18,10 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install cutlet
-
 ## Usage
 
-TODO: Write usage instructions here
+Coming soon :)
+
 
 ## Development
 
@@ -32,7 +31,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cutlet. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at [https://github.com/anicholson/cutlet][cutlet]. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +39,8 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Cutlet project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/cutlet/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Cutlet project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/anicholson/cutlet/blob/master/CODE_OF_CONDUCT.md).
+
+[announcement]: https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/
+[rack]: https://rack.github.io/
+[cutlet]: https://github.com/anicholson/cutlet
