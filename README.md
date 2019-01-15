@@ -20,8 +20,55 @@ And then execute:
 
 ## Usage
 
-Coming soon :)
+For general documentation about AWS Lambda with Ruby, [check out their documentation][ruby_docs].
 
+### Standalone Rack application
+
+In your `handler.rb` (or whatever you've named it), require your application and serve it with Cutlet:
+
+```ruby
+# handler.rb
+
+require 'cutlet'
+require_relative './my_rack_app'
+
+def handler(event:, context:)
+  Cutlet.serve(event: event, context: context, app: MyRackApp)
+end
+```
+
+That's it!
+
+### Custom Rack with `config.ru` (WIP)
+
+```ruby
+
+require 'cutlet'
+
+def handler(event:, context:)
+  Cutlet.serve(event: event, context: context, rackup: 'config.ru')
+end
+
+```
+
+or do it inline!
+
+```ruby
+
+require 'cutlet'
+require 'rack-attack'
+
+require_relative './my_rack_app'
+
+def handler(event:, context:)
+  Cutlet.serve(event: event, context: context) do
+	use Rack::Attack
+	
+	run MyRackApp
+  end
+end
+
+```
 
 ## Development
 
@@ -44,3 +91,4 @@ Everyone interacting in the Cutlet project’s codebases, issue trackers, chat r
 [announcement]: https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/
 [rack]: https://rack.github.io/
 [cutlet]: https://github.com/anicholson/cutlet
+[ruby_docs]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-ruby.html
