@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'cutlet/version'
+require 'cutlet/response_mapper'
 
 module Cutlet
   class Error < StandardError; end
@@ -13,6 +14,6 @@ module Cutlet
 
     app_response = app.call(env)
 
-    app_response
+    ResponseMapper.new(*app_response).to_json
   end
 end

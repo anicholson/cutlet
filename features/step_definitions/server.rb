@@ -47,3 +47,12 @@ end
 Then('the lambda event is provided to the app') do
   expect(@harness.event_passed).to eq(@harness.event)
 end
+
+Then('the handler function returns a payload') do
+  response = @harness.response
+  keys = response.keys
+
+  %w(isBase64Encoded statusCode headers multiValueHeaders body).each do |key|
+    expect(keys).to include(key)
+  end
+end

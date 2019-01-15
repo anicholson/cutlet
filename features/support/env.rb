@@ -19,7 +19,7 @@ def simple_rack_app
     ContextReporter.(context)
     EventReporter.(event)
 
-    [200, [], { event_name: context[:function_name] }.to_json]
+    [200, [], [{ event_name: context[:function_name] }.to_json]]
   end
 end
 
