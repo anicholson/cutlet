@@ -22,7 +22,9 @@ And then execute:
 
 For general documentation about AWS Lambda with Ruby, [check out their documentation][ruby_docs].
 
-### Standalone Rack application
+### Setup
+
+#### Standalone Rack application
 
 In your `handler.rb` (or whatever you've named it), require your application and serve it with Cutlet:
 
@@ -39,7 +41,7 @@ end
 
 That's it!
 
-### Custom Rack with `config.ru` (WIP)
+#### Custom Rack with `config.ru` (WIP)
 
 ```ruby
 
@@ -69,6 +71,22 @@ def handler(event:, context:)
 end
 
 ```
+
+### Interaction with the Lambda environment
+
+All Lambda handlers are provided with an `event` & a `context`.
+These are passed into the environment hash that Rack uses and are accessible
+by your application from there:
+
+```ruby
+
+function_name = env['lambda.context'].function_name
+
+```
+
+Lambda functions have a specific response format, but your app doesn't need to worry about that.
+Cutlet will take the response your app generated and map it into the correct format automatically!
+
 
 ## Development
 
